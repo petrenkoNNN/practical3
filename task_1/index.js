@@ -4,19 +4,21 @@ const emailEl = document.querySelector('.email');
 const ratingEl = document.querySelector('.rating');
 const ratingValueEl = document.querySelector('.rating-value');
 const commentsEl = document.querySelector('.comments');
-const nameErrorEl = document.querySelector('.name-error');
-const emailErrorEl = document.querySelector('.email-error');
 const resultEl = document.querySelector('.result');
-
+const nameTooltipEl = document.querySelector('.name-tooltip');
+const emailTooltipEl = document.querySelector('.email-tooltip');
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const showTooltip = (tooltipEl) => tooltipEl.classList.add('visible');
+const hideTooltip = (tooltipEl) => tooltipEl.classList.remove('visible');
 
 const validateName = () => {
   if (nameEl.value.trim() === '') {
-    nameErrorEl.textContent = '';
+    showTooltip(nameTooltipEl);
     return false;
   }
 
-  nameErrorEl.textContent = '';
+  hideTooltip(nameTooltipEl);
   return true;
 };
 
@@ -24,16 +26,18 @@ const validateEmail = () => {
   const email = emailEl.value.trim();
 
   if (email === '') {
-    emailErrorEl.textContent = '';
+     emailTooltipEl.textContent = 'Заполните это поле';
+    showTooltip(emailTooltipEl);
     return false;
   }
 
   if (!emailPattern.test(email)) {
-    emailErrorEl.textContent = '';
+    emailTooltipEl.textContent = 'Введите корректный email';
+    showTooltip(emailTooltipEl);
     return false;
   }
 
-  emailErrorEl.textContent = '';
+  hideTooltip(emailTooltipEl);
   return true;
 };
 
@@ -43,7 +47,7 @@ nameEl.addEventListener('focus', function () {
 
 nameEl.addEventListener('blur', function () {
   nameEl.style.backgroundColor = 'white';
-  validateName();
+  hideTooltip(nameTooltipEl);
 });
 
 emailEl.addEventListener('focus', function () {
@@ -52,19 +56,18 @@ emailEl.addEventListener('focus', function () {
 
 emailEl.addEventListener('blur', function () {
   emailEl.style.backgroundColor = 'white';
-  validateEmail();
+  hideTooltip(emailTooltipEl);
+  if (emailEl.value.trim() !== '') {
+    validateEmail();
+  }
 });
 
 nameEl.addEventListener('input', function () {
-  if (nameErrorEl.textContent !== '') {
-    validateName();
-  }
+  hideTooltip(nameTooltipEl);
 });
 
 emailEl.addEventListener('input', function () {
-  if (emailErrorEl.textContent !== '') {
-    validateEmail();
-  }
+  hideTooltip(emailTooltipEl);
 });
 
 ratingEl.addEventListener('input', function () {
@@ -74,13 +77,15 @@ ratingEl.addEventListener('input', function () {
 formEl.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const isNameValid = validateName();
-  const isEmailValid = validateEmail();
+ if (!validateName()) {
+  nameEl.focus();
+  return;
+}
 
-  if (!isNameValid || !isEmailValid) {
-    resultEl.innerHTML = '';
-    return;
-  }
+if (!validateEmail()) {
+  emailEl.focus();
+  return;
+}
 
   const genderEl = document.querySelector('input[name="gender"]:checked');
   const interestEls = document.querySelectorAll('input[name="interest"]:checked');
