@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма опроса</title>
+</head>
+<body>
+  <h1>Форма опроса</h1>
+
+  <form class="form">
+    <p>
+      <label>Имя пользователя:
+        <input type="text" class="name" required>
+      </label>
+    </p>
+
+    <p>
+      <label>Email:
+        <input type="email" class="email" required>
+      </label>
+    </p>
+
+    <p>
+      Пол:
+      <label><input type="radio" name="gender" value="Мужской"> Мужской</label>
+      <label><input type="radio" name="gender" value="Женский"> Женский</label>
+    </p>
+
+    <p>
+      <label>Оценка сервиса:
+        <input type="range" class="rating" min="1" max="10" value="5">
+      </label>
+      <span class="rating-value">5</span>
+    </p>
+
+    <div class="interests">
+      Интересы пользователя:<br>
+      <label><input type="checkbox" name="interest" value="Спорт"> Спорт</label><br>
+      <label><input type="checkbox" name="interest" value="Музыка"> Музыка</label><br>
+      <label><input type="checkbox" name="interest" value="Путешествия"> Путешествия</label><br>
+      <label><input type="checkbox" name="interest" value="Кино"> Кино</label>
+    </div>
+
+    <p>
+      <label>Дополнительные комментарии:<br>
+        <textarea class="comments" rows="3" cols="35"></textarea>
+      </label>
+    </p>
+
+    <button type="submit">Отправить</button>
+  </form>
+
+  <div class="result"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
