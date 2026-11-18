@@ -25,7 +25,7 @@ body {
       flex: 1;
     }
 
-    #card {
+    .card {
       display: flex;
       align-items: flex-end;
       box-sizing: border-box;
