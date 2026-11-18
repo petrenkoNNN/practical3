@@ -41,20 +41,20 @@ const validateEmail = () => {
   return true;
 };
 
-nameEl.addEventListener('focus', function () {
+nameEl.addEventListener('focus', () =>   {
   nameEl.style.backgroundColor = 'lightblue';
 });
 
-nameEl.addEventListener('blur', function () {
+nameEl.addEventListener('blur', () => {
   nameEl.style.backgroundColor = 'white';
   hideTooltip(nameTooltipEl);
 });
 
-emailEl.addEventListener('focus', function () {
+emailEl.addEventListener('focus', () => {
   emailEl.style.backgroundColor = 'lightblue';
 });
 
-emailEl.addEventListener('blur', function () {
+emailEl.addEventListener('blur', () => {
   emailEl.style.backgroundColor = 'white';
   hideTooltip(emailTooltipEl);
   if (emailEl.value.trim() !== '') {
@@ -62,19 +62,19 @@ emailEl.addEventListener('blur', function () {
   }
 });
 
-nameEl.addEventListener('input', function () {
+nameEl.addEventListener('input', () => {
   hideTooltip(nameTooltipEl);
 });
 
-emailEl.addEventListener('input', function () {
+emailEl.addEventListener('input', () => {
   hideTooltip(emailTooltipEl);
 });
 
-ratingEl.addEventListener('input', function () {
+ratingEl.addEventListener('input', () => {
   ratingValueEl.textContent = ratingEl.value;
 });
 
-formEl.addEventListener('submit', function (event) {
+formEl.addEventListener('submit', (event) => {
   event.preventDefault();
 
  const validators = {
@@ -110,7 +110,7 @@ formEl.addEventListener('submit', function (event) {
   titleEl.textContent = 'Данные пользователя';
   resultEl.appendChild(titleEl);
 
-  data.forEach(function ([label, value]) {
+  data.forEach(([label, value]) => {
     const rowEl = document.createElement('p');
     rowEl.textContent = `${label}: ${value}`;
     resultEl.appendChild(rowEl);
