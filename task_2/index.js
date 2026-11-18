@@ -25,8 +25,8 @@ formEl.addEventListener('submit', function (event) {
   event.preventDefault();
 
   const name = nameEl.value.trim();
-  const weight = Number(weightEl.value);
-  const distance = Number(distanceEl.value);
+  const weight = +(weightEl.value);
+  const distance = +(distanceEl.value);
 
   if (!namePattern.test(name)) {
     errorEl.textContent = 'Пожалуйста, введите корректное название товара.';
