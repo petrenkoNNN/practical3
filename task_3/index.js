@@ -8,20 +8,20 @@ const inputEl = document.querySelector('.text');
       green: '#43a047'
     };
 
-    inputEl.addEventListener('input', function () {
+    inputEl.addEventListener('input', () => {
       cardEl.textContent = inputEl.value || 'Ваш текст';
     });
 
-    inputEl.addEventListener('focus', function () {
+    inputEl.addEventListener('focus', () => {
       inputEl.style.borderColor = '#1e88e5';
       inputEl.style.backgroundColor = 'lightblue';
     });
 
-    inputEl.addEventListener('blur', function () {
+    inputEl.addEventListener('blur', () => {
       inputEl.style.borderColor = '#ccc';
       inputEl.style.backgroundColor = '#fff';
     });
 
-    selectEl.addEventListener('change', function () {
+    selectEl.addEventListener('change', () => {
       cardEl.style.backgroundColor = colors[selectEl.value];
     });
