@@ -1,6 +1,6 @@
 const inputEl = document.querySelector('.text');
     const selectEl = document.querySelector('.color');
-    const cardEl = document.querySelector('#card');
+    const cardEl = document.querySelector('.card');
 
     const colors = {
       red: '#e53935',
