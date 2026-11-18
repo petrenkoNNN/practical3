@@ -77,15 +77,19 @@ ratingEl.addEventListener('input', function () {
 formEl.addEventListener('submit', function (event) {
   event.preventDefault();
 
- if (!validateName()) {
-  nameEl.focus();
-  return;
-}
+ const validators = {
+    name: { element: nameEl, validator: validateName },
+    email: { element: emailEl, validator: validateEmail }
+  };
 
-if (!validateEmail()) {
-  emailEl.focus();
-  return;
-}
+  const configs = Object.values(validators);
+
+  for (let i = 0; i < configs.length; i++) {
+    if (!configs[i].validator()) {
+      configs[i].element.focus();
+      return;
+    }
+  }
 
   const genderEl = document.querySelector('input[name="gender"]:checked');
   const interestEls = document.querySelectorAll('input[name="interest"]:checked');
